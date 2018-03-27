@@ -36,8 +36,9 @@ int main(int argc, char **argv)
         stack_a->num = ft_atoi(argv[i]);
         i++;
     }
-//    if (stack_a && stack_a->next)
-//        stack_a = ft_sa(stack_a);
+    write(1, "123\n", 4);
+    if (stack_a && stack_a->next)
+        stack_a = ft_sa(stack_a);
     ft_pa(&stack_b, &stack_a);
     while (stack_a)
     {
