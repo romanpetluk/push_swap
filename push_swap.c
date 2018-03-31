@@ -1,33 +1,20 @@
 
 #include "push_swap.h"
 
-t_list_swap *ft_sa(t_list_swap *a)
+int main(int argc, char **argv)
 {
-    t_list_swap *temp;
+    t_list_swap *stack_a;
+    t_list_swap *stack_b;
+    int         i;
 
-    temp = a;
-    a = a->next;
-    temp->next = a->next;
-    a->next = temp;
-    return (a);
-}
-
-void ft_pa(t_list_swap **a, t_list_swap **b)
-{
-    t_list_swap *temp;
-
-    temp = *b;
-    *b = (*b)->next;
-    if (*a)
+    stack_a = NULL;
+    stack_b = NULL;
+    i = 1;
+    while (argc > i)
     {
-        write(1, "123\n", 4);
-        temp->next = *a;
+        if (!(ft_newlist(&stack_a, ft_atoi_swap(argv[i]))))
+            return (0);
+        i++;
     }
-    else
-    {
-        temp->next = NULL;
-
-//        write(1, "123\n", 4);
-    }
-    *a = temp;
+    ft_comands("rra" ,stack_a, stack_b);
 }
