@@ -8,7 +8,7 @@ void ft_comands_test(t_list_swap *a, t_list_swap *b)
         ft_printf("%d\n", a->num);
         a = a->next;
     }
-    ft_printf("\n\n");
+    ft_printf("||\n||\n");
     while (b)
     {
         ft_printf("%d\n", b->num);
