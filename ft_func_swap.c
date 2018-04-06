@@ -12,7 +12,10 @@ int ft_check_dubl(t_list_swap *a)
         while (temp)
         {
             if (temp->num == a->num)
-                return (-1);
+            {
+                write(1, "Error\n", 6);
+                exit (0);
+            }
             temp = temp->next;
         }
         a = a->next;

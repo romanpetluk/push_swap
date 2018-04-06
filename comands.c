@@ -27,6 +27,11 @@ static void ft_comn_cmp(char *s, t_list_swap **a, t_list_swap **b)
         ft_rra(a);
         ft_rra(b);
     }
+    else
+    {
+        write(1, "Error\n", 6);
+        exit (0);
+    }
 }
 
 void ft_com_cmp(char *s, t_list_swap **a, t_list_swap **b)

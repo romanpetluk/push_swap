@@ -100,29 +100,29 @@ void ft_qsort(t_list_swap *a, t_list_swap *b)
         {
             ft_pa(&b, &a);
             op = ft_find_op(a);
-            ft_printf("%d)pb\n", i);
+            ft_printf("pb\n");
             i++;
         }
         else if ((ft_opcount(a, op)* 2) > ft_count(a))
         {
             ft_rra(&a);
-            ft_printf("%d)rra\n", i);
+            ft_printf("rra\n");
             i++;
         }
         else
         {
             ft_ra(&a);
-            ft_printf("%d)ra\n", i);
+            ft_printf("ra\n");
             i++;
         }
     }
     while (b)
     {
         ft_pa(&a, &b);
-        ft_printf("%d)pa\n", i);
+        ft_printf("pa\n");
         i++;
     }
-    ft_comands_test(a, b);
+    //ft_comands_test(a, b);
 }
 
 int main(int argc, char **argv)
@@ -134,6 +134,8 @@ int main(int argc, char **argv)
     stack_a = NULL;
     stack_b = NULL;
     i = 1;
+    if (argc < 2)
+        exit (0);
     while (argc > i)
     {
         if (ft_check_error(argv[i], &stack_a, 0) == -1)
@@ -143,5 +145,7 @@ int main(int argc, char **argv)
         }
         i++;
     }
+    ft_check_dubl(stack_a);
     ft_qsort(stack_a, stack_b);
+    ft_comands_test(stack_a, stack_b);
 }

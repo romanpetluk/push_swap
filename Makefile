@@ -14,7 +14,7 @@ FT_DIR	:= libft
 
 include	libft/Libft.mk
 
-NAME = pushswap
+NAME = push_swap
 
 CR_NAME = checker
 
@@ -35,10 +35,10 @@ PS_OBJ =    push_swap.o
 all : $(CR_NAME) $(NAME)
 
 $(NAME): $(FT_NAME) $(OBJECTS) $(PS_OBJ)
-	$(GCC) -o $(NAME) $(OBJECTS) $(PS_OBJ) $(FT_NAME)
+	@$(GCC) -o $(NAME) $(OBJECTS) $(PS_OBJ) $(FT_NAME)
 
 $(CR_NAME): $(FT_NAME) $(OBJECTS) $(CR_OBJ)
-	$(GCC) -o $(CR_NAME) $(OBJECTS) $(CR_OBJ) $(FT_NAME)
+	@$(GCC) -o $(CR_NAME) $(OBJECTS) $(CR_OBJ) $(FT_NAME)
 
 $(FT_NAME): $(FT_OBJS) $(FT_DEPS)
 	@$(MAKE) -C libft
