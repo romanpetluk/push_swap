@@ -24,13 +24,17 @@ GCC = gcc -Wall -Wextra -Werror
 DEPS	:= push_swap.h
 INCLUDES = -I.
 
-OBJECTS = 	comands.o \
-			ft_func_swap.o \
-			swap.o
+OBJECTS = 	bonus.o
 
-CR_OBJ = 	checker.o
+CR_OBJ = 	checker.o       \
+            ft_func_check.o \
+            ft_check_swap.o \
+            comands.o
 
-PS_OBJ =    push_swap.o
+PS_OBJ =    push_swap.o     \
+            ft_func_swap.o  \
+            swap.o          \
+            median.o
 
 all : $(CR_NAME) $(NAME)
 

@@ -1,21 +1,6 @@
 
 #include "push_swap.h"
 
-void ft_comands_test(t_list_swap *a, t_list_swap *b)
-{
-    while (a)
-    {
-        ft_printf("%d\n", a->num);
-        a = a->next;
-    }
-    ft_printf("||\n||\n");
-    while (b)
-    {
-        ft_printf("%d\n", b->num);
-        b = b->next;
-    }
-}
-
 static void ft_comn_cmp(char *s, t_list_swap **a, t_list_swap **b)
 {
     if (ft_strcmp(s, "rra") == 0)

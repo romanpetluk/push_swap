@@ -1,9 +1,9 @@
 
 #include "push_swap.h"
 
-void ft_swap_sa(t_swap **a)
+void ft_sa(t_list_swap **a)
 {
-    t_swap *temp;
+    t_list_swap *temp;
 
     if (*a && (*a)->next)
     {
@@ -14,9 +14,9 @@ void ft_swap_sa(t_swap **a)
     }
 }
 
-void ft_swap_pa(t_swap **a, t_swap **b)
+void ft_pa(t_list_swap **a, t_list_swap **b)
 {
-    t_swap *temp;
+    t_list_swap *temp;
 
     if (*b)
     {
@@ -30,9 +30,9 @@ void ft_swap_pa(t_swap **a, t_swap **b)
     }
 }
 
-void ft_swap_ra(t_swap **a)
+void ft_ra(t_list_swap **a)
 {
-    t_swap *temp;
+    t_list_swap *temp;
 
     if (*a && (*a)->next)
     {
@@ -47,10 +47,10 @@ void ft_swap_ra(t_swap **a)
         temp->next = NULL;
     }
 }
-void ft_swap_rra(t_swap **a)
+void ft_rra(t_list_swap **a)
 {
-    t_swap *temp;
-    t_swap *temp2;
+    t_list_swap *temp;
+    t_list_swap *temp2;
 
     if (*a && (*a)->next)
     {

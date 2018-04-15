@@ -1,9 +1,11 @@
 
 #include "push_swap.h"
 
-int ft_swap_dubl(t_swap *a)
+
+
+int ft_check_dubl(t_list_swap *a)
 {
-    t_swap *temp;
+    t_list_swap *temp;
 
     temp = a;
     while (a)
@@ -23,7 +25,7 @@ int ft_swap_dubl(t_swap *a)
     return (1);
 }
 
-int ft_swap_error(char *s, t_swap **a, int i)
+int ft_check_error(char *s, t_list_swap **a, int i)
 {
     long num;
     int n;
@@ -46,7 +48,7 @@ int ft_swap_error(char *s, t_swap **a, int i)
                 return (-1);
             i++;
         }
-        if (!(ft_newlist_swap(a, num)))
+        if (!(ft_newlist(a, num)))
             return (-1);
         while (s[i] == ' ')
             i++;
@@ -56,17 +58,17 @@ int ft_swap_error(char *s, t_swap **a, int i)
     return(-1);
 }
 
-int ft_newlist_swap(t_swap **a, int num)
+int ft_newlist(t_list_swap **a, int num)
 {
-    t_swap  *new;
-    t_swap  *temp;
+    t_list_swap	*new;
+    t_list_swap *temp;
 
-    if (!(new = (t_swap*)malloc(sizeof(t_swap))))
+    if (!(new = (t_list_swap*)malloc(sizeof(t_list_swap))))
         return (0);
+
     temp = *a;
     new->next = NULL;
     new->num = num;
-    new->grp = 0;
     if (*a)
     {
         while (temp->next)
