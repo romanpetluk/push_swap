@@ -34,7 +34,9 @@ CR_OBJ = 	checker.o       \
 PS_OBJ =    push_swap.o     \
             ft_func_swap.o  \
             swap.o          \
-            median.o
+            median.o        \
+            sort_med_a.o      \
+            sort_med_b.o      \
 
 all : $(CR_NAME) $(NAME)
 

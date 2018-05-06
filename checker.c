@@ -42,8 +42,16 @@ int ft_check_sort(t_list_swap *a, t_list_swap *b)
     return (0);
 }
 
+//static void creat_statistics(t_count_comands **statistics)
+//{
+//    statistics = (*t_count_comands)malloc(sizeof(t_count_comands));
+//
+//}
+
 static void checker(t_list_swap *stack_a, t_list_swap *stack_b, int f, int fd)
 {
+    //t_count_comands statistics;
+
     if (!stack_a)
         exit (0);
     ft_check_dubl(stack_a);

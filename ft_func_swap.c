@@ -1,6 +1,45 @@
 
 #include "push_swap.h"
 
+int ft_count_elem(t_swap *a)
+{
+    int i;
+
+    i = 0;
+    if (a)
+    {
+        while (a)
+        {
+            if (i > 3)
+                return (0);
+            a = a->next;
+            i++;
+        }
+    }
+    return (i);
+}
+int ft_count_grup(t_swap *a)
+{
+    t_swap *temp;
+    int i;
+    int grp;
+
+    i = 0;
+    if (a)
+    {
+        grp = a->grp;
+        temp = a->next;
+        while (temp)
+        {
+            if (temp->grp != a->grp || i > 3)
+                i++;
+            temp = temp->next;
+            a = a->next;
+        }
+    }
+    return (i);
+}
+
 int ft_swap_dubl(t_swap *a)
 {
     t_swap *temp;

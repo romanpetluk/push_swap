@@ -50,9 +50,11 @@ static int ft_quickselect(int *m, int left, int right, int k)
 static int ft_count(t_swap *a)
 {
     int i;
+    int grp;
 
+    grp = a->grp;
     i = 0;
-    while (a)
+    while (a && a->grp == grp)
     {
         a = a->next;
         i++;
@@ -64,10 +66,12 @@ int ft_median(t_swap *a)
 {
     int i;
     int *m;
+    int grp;
 
     i = 0;
+    grp = a->grp;
     m = (int *)malloc(sizeof(int) * (ft_count(a) + 1));
-    while (a)
+    while (a && grp == a->grp)
     {
         m[i] = a->num;
         a = a->next;
