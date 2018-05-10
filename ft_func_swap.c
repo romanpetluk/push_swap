@@ -10,7 +10,7 @@ int ft_count_elem(t_swap *a)
     {
         while (a)
         {
-            if (i > 3)
+            if (i > 2)
                 return (0);
             a = a->next;
             i++;
@@ -20,20 +20,17 @@ int ft_count_elem(t_swap *a)
 }
 int ft_count_grup(t_swap *a)
 {
-    t_swap *temp;
-    int i;
     int grp;
+    int i;
 
     i = 0;
     if (a)
     {
         grp = a->grp;
-        temp = a->next;
-        while (temp)
+        while (a)
         {
-            if (temp->grp != a->grp)// || i > 3)
+            if (grp != a->grp)
                 i++;
-            temp = temp->next;
             a = a->next;
         }
     }

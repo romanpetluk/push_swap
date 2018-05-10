@@ -28,8 +28,8 @@ static void	ft_com_cmp3(char *s, t_variables *var)
 	{
         ft_rra(&(var->a));
         ft_rra(&(var->b));
-        var->rra++;
-        var->rrb++;
+        var->rrr++;
+
 	}
 	else
 	{
@@ -59,8 +59,8 @@ static void	ft_com_cmp2(char *s, t_variables *var)
     {
         ft_ra(&(var->a));
         ft_ra(&(var->b));
-        var->ra++;
-        var->rb++;
+        var->rr++;
+
     }
     else
         ft_com_cmp3(s, var);
@@ -82,8 +82,7 @@ void		ft_com_cmp(char *s, t_variables *var)
 	{
         ft_sa(&(var->a));
         ft_sa(&(var->b));
-        var->sa++;
-        var->sb++;
+        var->ss++;
 	}
 	else if (ft_strcmp(s, "pa") == 0)
     {

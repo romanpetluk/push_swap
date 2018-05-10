@@ -15,21 +15,21 @@ static int ft_check_med(t_swap *a, int med)
     return (0);
 }
 
-int ft_check_qsortb(t_swap *a)
+int ft_check_qsortb(t_swap *b)
 {
     t_swap *temp;
     int i;
 
     i = 1;
-    if (a)
+    if (b)
     {
-        temp = a->next;
-        while (temp && temp->grp == a->grp)
+        temp = b->next;
+        while (temp && temp->grp == b->grp)
         {
-            if (temp->num > a->num)
+            if (temp->num > b->num)
                 return (i);
             temp = temp->next;
-            a = a->next;
+            b = b->next;
             i++;
         }
     }
@@ -115,8 +115,6 @@ void ft_qsort_comb(t_swap **a, t_swap **b, int fd)
     }
     else
     {
-
         ft_sort3b(a, b, fd);
     }
-    ft_qsort(a, b, fd);
 }

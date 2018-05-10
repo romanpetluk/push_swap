@@ -26,11 +26,12 @@ int		ft_flag_fd_swap(char **av, int i)
 
 void ft_statistics(t_variables *var)
 {
-    ft_printf("sa = %-12dpa = %-12dra = %-12drra = %-12d\n"
+    ft_printf("sa: = %-12dpa: = %-12dra: = %-12drra: = %-12d\n"
             , var->sa, var->pa, var->ra, var->rra);
-    ft_printf("sb = %-12dpb = %-12drb = %-12drrb = %-12d\n"
+    ft_printf("sb: = %-12dpb: = %-12drb: = %-12drrb: = %-12d\n"
             , var->sb, var->pb, var->rb, var->rrb);
-    ft_printf("ss = %-29drr = %-12drrr = %-12d\n", var->ss, var->rr, var->rrr);
+    ft_printf("ss: = %-30drr: = %-12drrr: = %-12d\n", var->ss, var->rr, var->rrr);
+    ft_printf("\nall: %d\n", (var->sa + var->pa + var->ra + var->rra + var->sb + var->pb + var->rb + var->rrb + var->ss + var->rr + var->rrr));
 }
 
 void	ft_stack_print(t_list_swap *a, t_list_swap *b)

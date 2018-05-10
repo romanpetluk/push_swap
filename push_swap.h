@@ -85,5 +85,6 @@ void                    ft_stack_print_test(t_swap *a, t_swap *b);
 int                     ft_count_elem(t_swap *a);
 int                     ft_count_grup(t_swap *a);
 void                    ft_statistics(t_variables *var);
+int                     ft_check_qsortb(t_swap *b);
 
 #endif
