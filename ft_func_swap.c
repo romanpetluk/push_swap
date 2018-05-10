@@ -31,7 +31,7 @@ int ft_count_grup(t_swap *a)
         temp = a->next;
         while (temp)
         {
-            if (temp->grp != a->grp || i > 3)
+            if (temp->grp != a->grp)// || i > 3)
                 i++;
             temp = temp->next;
             a = a->next;

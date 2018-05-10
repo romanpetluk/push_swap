@@ -118,6 +118,5 @@ void ft_qsort_comb(t_swap **a, t_swap **b, int fd)
 
         ft_sort3b(a, b, fd);
     }
-    ft_qsort_com(a, b, fd);
-
+    ft_qsort(a, b, fd);
 }

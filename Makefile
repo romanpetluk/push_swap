@@ -35,8 +35,8 @@ PS_OBJ =    push_swap.o     \
             ft_func_swap.o  \
             swap.o          \
             median.o        \
-            sort_med_a.o      \
-            sort_med_b.o      \
+            qsort_a.o      \
+            qsort_b.o      \
 
 all : $(CR_NAME) $(NAME)
 

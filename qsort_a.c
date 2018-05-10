@@ -99,7 +99,7 @@ static int ft_sort3(t_swap **a, int fd)
     return (0);
 }
 
-void ft_qsort_com(t_swap **a, t_swap **b, int fd)
+void ft_qsort(t_swap **a, t_swap **b, int fd)
 {
     int med;
     int grp;

@@ -27,62 +27,44 @@ void ft_stack_print_test(t_swap *a, t_swap *b)
     ft_printf("\n");
 }
 
-int main(int argc, char **argv)
+static int ft_init(t_var_s **var)
 {
-    t_swap *stack_a;
-    t_swap *stack_b;
-    int         i;
-    int         fd;
-
-    if (argc < 2)
-        exit (0);
-    stack_a = NULL;
-    stack_b = NULL;
-    i = 1;
-    fd = 1;
-    if (argc > i + 2 && (fd = ft_flag_fd_swap(argv, i)))
-        i += 2;
-    if (fd < 1)
-        fd = 1;
-    while (argc > i)
-    {
-        if (ft_swap_error(argv[i], &stack_a, 0) == -1)
-        {
-            write(1, "Error\n", 6);
-            return (-1);
-        }
-        i++;
-    }
-    ft_swap_dubl(stack_a);
-    ft_qsort_com(&stack_a, &stack_b, fd);
-    //ft_stack_print_test(stack_a, stack_b);
+    t_var_s *temp;
+    if (!(temp = (t_var_s*)malloc(sizeof(t_var_s))))
+        return (0);
+    temp->a = NULL;
+    temp->b = NULL;
+    temp->i = 1;
+    temp->fd = 1;
+//    temp->med_a = 0;
+//    temp->med_b = 0;
+//    temp->grp = 0;
+//    temo->count_ra = 0;
+//    temp->count_rb = 0;
+    *var = temp;
+    return (1);
 }
 
 int main(int argc, char **argv)
 {
-    t_swap *stack_a;
-    t_swap *stack_b;
-    t_variables     a;
+    t_var_s     *var;
 
     if (argc < 2)
         exit (0);
-    stack_a = NULL;
-    stack_b = NULL;
-    i = 1;
-    fd = 1;
-    if (argc > i + 2 && (fd = ft_flag_fd_swap(argv, i)))
-        i += 2;
-    if (fd < 1)
-        fd = 1;
-    while (argc > i)
+    ft_init(&var);
+    if (argc > var->i + 2 && (var->fd = ft_flag_fd_swap(argv, var->i)))
+        var->i += 2;
+    if (var->fd < 1)
+        var->fd = 1;
+    while (argc > var->i)
     {
-        if (ft_swap_error(argv[i], &stack_a, 0) == -1)
+        if (ft_swap_error(argv[var->i], &(var->a), 0) == -1)
         {
             write(1, "Error\n", 6);
             return (-1);
         }
-        i++;
+        var->i++;
     }
-    ft_swap_dubl(stack_a);
-    ft_qsort_com(&stack_a, &stack_b, fd);
+    ft_swap_dubl(var->a);
+    ft_qsort(&var->a, &var->b, var->fd);
 }
