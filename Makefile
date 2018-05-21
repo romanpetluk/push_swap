@@ -32,11 +32,13 @@ CR_OBJ = 	checker.o       \
             comands.o
 
 PS_OBJ =    push_swap.o     \
-            ft_func_swap.o  \
+            lib_push_swap.o \
             swap.o          \
             median.o        \
-            qsort_a.o      \
-            qsort_b.o      \
+            qsort_a.o       \
+            qsort_b.o       \
+            lib_push_swap_a.o   \
+            sort3.o         \
 
 all : $(CR_NAME) $(NAME)
 

@@ -1,42 +1,6 @@
 
 #include "push_swap.h"
 
-int ft_count_elem(t_swap *a)
-{
-    int i;
-
-    i = 0;
-    if (a)
-    {
-        while (a)
-        {
-            if (i > 2)
-                return (0);
-            a = a->next;
-            i++;
-        }
-    }
-    return (i);
-}
-int ft_count_grup(t_swap *a)
-{
-    int grp;
-    int i;
-
-    i = 0;
-    if (a)
-    {
-        grp = a->grp;
-        while (a)
-        {
-            if (grp != a->grp)
-                i++;
-            a = a->next;
-        }
-    }
-    return (i);
-}
-
 int ft_swap_dubl(t_swap *a)
 {
     t_swap *temp;

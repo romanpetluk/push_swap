@@ -1,120 +1,80 @@
 
 #include "push_swap.h"
 
-static int ft_check_med(t_swap *a, int med)
+static int ft_check_median_b(t_swap *a, int med)
 {
-    int grp;
-
-    grp = a->grp;
-    while (a && a->grp == grp)
+    while (a)
     {
-        if (a->num > med)
+        if (a->num >= med)
             return (1);
         a = a->next;
     }
     return (0);
 }
 
-int ft_check_qsortb(t_swap *b)
+void ft_sort3_b(t_var_s *var)
 {
-    t_swap *temp;
-    int i;
-
-    i = 1;
-    if (b)
-    {
-        temp = b->next;
-        while (temp && temp->grp == b->grp)
-        {
-            if (temp->num > b->num)
-                return (i);
-            temp = temp->next;
-            b = b->next;
-            i++;
-        }
-    }
-    return (0);
-}
-
-static void ft_grp_elem_swap(t_swap **a, t_swap **b, int fd)
-{
-    t_swap *temp;
+    int ib;
     int grp;
 
-    temp = *b;
-    grp = temp->grp;
-    while (temp && temp->grp == grp)
+    if (var->b)
     {
-        temp->grp = 0;
-        temp = temp->next;
-        ft_swap_pa(a, b);
-        write(fd, "pa\n", 3);
+    grp = var->b->grp;
+    while (var->b && var->b->grp == grp)
+    {
+        ib = ft_check_swap_b(var->b);
+        var->i = ft_check_swap(var->a);
+        if (var->i == 1)
+        {
+            ft_swap_sa(&(var->a));
+            write(var->fd, "sa\n", 3);
+        }
+        else if (ib == 1)
+        {
+            ft_swap_sa(&(var->b));
+            write(var->fd, "sb\n", 3);
+        }
+        else
+        {
+            var->b->grp = 0;
+            ft_swap_pa(&(var->a), &(var->b));
+            write(var->fd, "pa\n", 3);
+        }
+
+    }
     }
 }
 
-static int ft_sort3b(t_swap **a, t_swap **b, int fd)
+void ft_qsort_b(t_var_s *var)
 {
-    int i;
-
-    while ((i = ft_check_qsortb(*b)))
+    var->grp = 0;
+    var->count_ra = 0;
+    if (ft_count_elem_grup(var->b) > 3)
     {
-        if (i == 1)
+        var->grp++;
+        var->med_b = ft_median(var->b);
+        while (ft_check_median_b(var->b, var->med_b))
         {
-            ft_swap_sa(b);
-            write(fd, "sb\n", 3);
-        }
-        else if (ft_count_elem(*b) && i > 1)
-        {
-            ft_swap_rra(b);
-            write(fd, "rrb\n", 4);
-        }
-        else if (i > 1)
-        {
-            ft_swap_ra(b);
-            ft_swap_sa(b);
-            ft_swap_rra(b);
-            write(fd, "rb\nsb\nrrb\n", 10);
-        }
-    }
-    ft_grp_elem_swap(a, b, fd);
-    return (0);
-}
-
-void ft_qsort_comb(t_swap **a, t_swap **b, int fd)
-{
-    int med;
-    int grp;
-    int count_ra;
-    grp = 0;//(*b)->grp;
-
-    count_ra = 0;
-    if (ft_check_grp(*b))
-    {
-        grp++;
-        med = ft_median(*b);
-        while (ft_check_med(*b, med))
-        {
-            if ((*b)->num >= med)
+            if (var->b->num >= var->med_b)
             {
-                (*b)->grp += grp;
-                ft_swap_pa(a, b);
-                write(fd, "pa\n", 3);
+                var->b->grp += var->grp;
+                ft_swap_pa(&(var->a), &(var->b));
+                write(var->fd, "pa\n", 3);
             }
             else
             {
-                ft_swap_ra(b);
-                write(fd, "rb\n", 3);
-                count_ra++;
+                ft_swap_ra(&(var->b));
+                write(var->fd, "rb\n", 3);
+                var->count_ra++;
             }
         }
-        while (ft_count_grup(*b) &&count_ra--)
+        while (ft_count_grup(var->b) && var->count_ra--)
         {
-            ft_swap_rra(b);
-            write(fd, "rrb\n", 4);
+            ft_swap_rra(&(var->b));
+            write(var->fd, "rrb\n", 4);
         }
     }
     else
-    {
-        ft_sort3b(a, b, fd);
-    }
+        ft_sort3_b(var);
+    //ft_stack_print_test(var->a, var->b);
 }

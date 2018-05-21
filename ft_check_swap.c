@@ -1,5 +1,5 @@
 
-#include "push_swap.h"
+#include "checker.h"
 
 void ft_sa(t_list_swap **a)
 {

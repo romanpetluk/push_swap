@@ -36,11 +36,10 @@ static int ft_init(t_var_s **var)
     temp->b = NULL;
     temp->i = 1;
     temp->fd = 1;
-//    temp->med_a = 0;
-//    temp->med_b = 0;
-//    temp->grp = 0;
-//    temo->count_ra = 0;
-//    temp->count_rb = 0;
+    temp->med_a = 0;
+    temp->med_b = 0;
+    temp->grp = 0;
+    temp->count_ra = 0;
     *var = temp;
     return (1);
 }
@@ -66,5 +65,5 @@ int main(int argc, char **argv)
         var->i++;
     }
     ft_swap_dubl(var->a);
-    ft_qsort(&var->a, &var->b, var->fd);
+    ft_qsort(var);
 }
