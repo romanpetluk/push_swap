@@ -22,7 +22,7 @@ static int ft_init(t_variables **var)
     temp->b = NULL;
     temp->i = 1;
     temp->fd = 0;
-    temp->v = 0;
+//    temp->v = 0;
     temp->c = 0;
     temp->stat = 0;
     temp->sa = 0;
@@ -42,25 +42,25 @@ static int ft_init(t_variables **var)
 
 static int				ft_flag(char **s, t_variables *var)
 {
-    if (ft_strcmp(s[var->i], "-v") == 0)
-    {
-        var->v = 1;
-        return (1);
-    }
+//    if (ft_strcmp(s[var->i], "-v") == 0)
+//    {
+//        var->v = 1;
+//        return (1);
+//    }
     if (ft_strcmp(s[var->i], "-c") == 0)
     {
         var->c = 1;
-        return (2);
+        return (1);
     }
-    if (ft_strcmp(s[var->i], "-s") == 0)
+    else if (ft_strcmp(s[var->i], "-s") == 0)
     {
         var->stat = 1;
-        return (3);
+        return (1);
     }
-    if (ft_strcmp(s[var->i], "-fd") == 0)
+    else if (ft_strcmp(s[var->i], "-fd") == 0)
     {
         var->fd = (open(s[++var->i], O_RDONLY));
-        return (4);
+        return (1);
     }
     return (0);
 }
@@ -103,8 +103,8 @@ static void			checker(t_variables *var)
     while (get_next_line(var->fd, &s) > 0)
     {
         ft_com_cmp(s, var);
-        if (var->v == 1)
-            ft_stack_print(var->a, var->b);
+        if (var->c == 1)
+            ft_stack_print(var->a, var->b, s);
     }
     if (var->stat == 1)
         ft_statistics(var);
@@ -123,8 +123,6 @@ int				main(int argc, char **argv)
         if (argc < var->i + 1)
             exit (0);
     }
-	if (var->fd < 0)
-        var->fd = 0;
 	while (argc > var->i)
 		if (ft_check_error(argv[var->i++], &(var->a), 0) == -1)
 		{

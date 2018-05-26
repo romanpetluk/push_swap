@@ -38,7 +38,7 @@ PS_OBJ =    push_swap.o     \
             qsort_a.o       \
             qsort_b.o       \
             lib_push_swap_a.o   \
-            sort3.o         \
+            sort3.o     \
 
 all : $(CR_NAME) $(NAME)
 

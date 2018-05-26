@@ -19,29 +19,27 @@ void ft_sort3_b(t_var_s *var)
 
     if (var->b)
     {
-    grp = var->b->grp;
-    while (var->b && var->b->grp == grp)
-    {
-        ib = ft_check_swap_b(var->b);
-        var->i = ft_check_swap(var->a);
-        if (var->i == 1)
+        grp = var->b->grp;
+        while (var->b && var->b->grp == grp)
         {
-            ft_swap_sa(&(var->a));
-            write(var->fd, "sa\n", 3);
+            ib = ft_check_swap_b(var->b);
+            var->i = ft_check_swap(var->a);
+            if (var->i == 1)
+            {
+                ft_swap_sa(&(var->a));
+                write(var->fd, "sa\n", 3);
+            }
+            else if (ib == 1)
+            {
+                ft_swap_sa(&(var->b));
+                write(var->fd, "sb\n", 3);
+            }
+            else
+            {
+                ft_swap_pa(&(var->a), &(var->b));
+                write(var->fd, "pa\n", 3);
+            }
         }
-        else if (ib == 1)
-        {
-            ft_swap_sa(&(var->b));
-            write(var->fd, "sb\n", 3);
-        }
-        else
-        {
-            var->b->grp = 0;
-            ft_swap_pa(&(var->a), &(var->b));
-            write(var->fd, "pa\n", 3);
-        }
-
-    }
     }
 }
 
@@ -67,6 +65,12 @@ void ft_qsort_b(t_var_s *var)
                 write(var->fd, "rb\n", 3);
                 var->count_ra++;
             }
+//            var->i = ft_check_swap(var->a);
+//            if (var->i == 1 && ft_count_elem_grup(var->a) < 4)
+//            {
+//                ft_swap_sa(&(var->a));
+//                write(var->fd, "sa\n", 3);
+//            }
         }
         while (ft_count_grup(var->b) && var->count_ra--)
         {
@@ -76,5 +80,4 @@ void ft_qsort_b(t_var_s *var)
     }
     else
         ft_sort3_b(var);
-    //ft_stack_print_test(var->a, var->b);
 }

@@ -27,26 +27,39 @@ static void ft_div_median(t_var_s *var)
     }
 }
 
-//static void ft_div_median_back(t_var_s *var)
-//{
-//
-//}
+void next_median(t_var_s *var)
+{
+    int i;
+
+    i = 0;
+    while (i < var->count_ra)
+    {
+        ft_swap_rra(&(var->a));
+        i++;
+    }
+    var->med_a = ft_median(var->a);
+    while (i--)
+    {
+        ft_swap_ra(&(var->a));
+    }
+}
 
 void ft_qsort(t_var_s *var)
 {
     while (var->b || ft_check_sort(var->a))
     {
         var->grp = 0;
-        //var->med_a = ft_median(var->a);
+        var->med_a = ft_median(var->a);
         while (ft_count_elem_grup(var->a) > 3 && ft_check_sort(var->a))
         {
             var->count_ra = 0;
             var->grp++;
-            var->med_a = ft_median(var->a);
             if (var->b)
                 var->med_b = ft_median(var->b);
             ft_div_median(var);
-            //var->med_a = ft_median(var->a);
+			if (var->v == 1)
+				ft_stack_debug(var->a, var->b);
+            next_median(var);
             while (ft_count_grup(var->a) && var->count_ra--)
             {
                 ft_swap_rra(&(var->a));
@@ -60,6 +73,10 @@ void ft_qsort(t_var_s *var)
             }
         }
         ft_sort3(var);
+		if (var->v == 1)
+			ft_stack_debug(var->a, var->b);
         ft_qsort_b(var);
+		if (var->v == 1)
+			ft_stack_debug(var->a, var->b);
     }
 }

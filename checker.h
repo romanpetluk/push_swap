@@ -18,7 +18,6 @@ typedef struct		    s_variables
     int                 i;
     int                 fd;
     int                 c;
-    int                 v;
     int                 stat;
     int				    sa;
     int				    sb;
@@ -44,6 +43,6 @@ void 					ft_comands(char *s, t_list_swap *a, t_list_swap *b);
 void                    ft_com_cmp(char *s, t_variables *var);
 
 void ft_statistics(t_variables *var);
-void	ft_stack_print(t_list_swap *a, t_list_swap *b);
+void	ft_stack_print(t_list_swap *a, t_list_swap *b, char *s);
 
 #endif
