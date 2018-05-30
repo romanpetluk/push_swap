@@ -21,13 +21,14 @@ CR_NAME = checker
 
 GCC = gcc -Wall -Wextra -Werror
 
-DEPS	:= push_swap.h
+DEPS	:= push_swap.h checker.h
 INCLUDES = -I.
 
-OBJECTS = 	bonus.o
+OBJECTS = 	bonus.o         \
+            bonus_colour.o
 
 CR_OBJ = 	checker.o       \
-            ft_func_check.o \
+            lib_check.o     \
             ft_check_swap.o \
             comands.o
 
@@ -38,7 +39,7 @@ PS_OBJ =    push_swap.o     \
             qsort_a.o       \
             qsort_b.o       \
             lib_push_swap_a.o   \
-            sort3.o     \
+            sort3.o         \
 
 all : $(CR_NAME) $(NAME)
 

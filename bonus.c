@@ -26,30 +26,19 @@ void ft_statistics(t_variables *var)
 			   + var->pb + var->rb + var->rrb + var->ss + var->rr + var->rrr));
 }
 
-void	ft_stack_print(t_list_swap *a, t_list_swap *b, char *s)
+void	ft_stack_print(t_variables *var, char *s, int com)
 {
-    ft_printf("command: %s\n", s);
-	if (a || b)
-		ft_printf("stack_a      stack_b\n");
-	while (a || b)
+	t_list_swap *temp_a;
+	t_list_swap *temp_b;
+
+	temp_a = var->a;
+	temp_b = var->b;
+	ft_printf("command: %s\n", s);
+	if (temp_a || temp_b)
 	{
-		if (a && b)
-		{
-			ft_printf("%-12d% d", a->num, b->num);
-			a = a->next;
-			b = b->next;
-		}
-		else if (a)
-		{
-			ft_printf("%d", a->num);
-			a = a->next;
-		}
-		else if (b)
-		{
-			ft_printf("%13c%d", ' ', b->num);
-			b = b->next;
-		}
-		ft_printf("\n");
+		ft_printf("stack_a      stack_b\n");
+		colour(&temp_a, &temp_b, com);
+		colour_0(&temp_a, &temp_b);
 	}
 	ft_printf("\n");
 }

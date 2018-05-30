@@ -42,11 +42,6 @@ static int ft_init(t_variables **var)
 
 static int				ft_flag(char **s, t_variables *var)
 {
-//    if (ft_strcmp(s[var->i], "-v") == 0)
-//    {
-//        var->v = 1;
-//        return (1);
-//    }
     if (ft_strcmp(s[var->i], "-c") == 0)
     {
         var->c = 1;
@@ -96,15 +91,16 @@ int					ft_check_sort(t_list_swap *a, t_list_swap *b)
 static void			checker(t_variables *var)
 {
     char			*s;
+	int				i;
 
     if (!var->a)
         exit (0);
     ft_check_dubl(var->a);
     while (get_next_line(var->fd, &s) > 0)
     {
-        ft_com_cmp(s, var);
+        i = ft_com_cmp(s, var);
         if (var->c == 1)
-            ft_stack_print(var->a, var->b, s);
+            ft_stack_print(var, s, i);
     }
     if (var->stat == 1)
         ft_statistics(var);

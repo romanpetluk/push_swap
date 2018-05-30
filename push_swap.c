@@ -1,6 +1,18 @@
 
 #include "push_swap.h"
-#include <stdio.h>
+
+int stack_del(t_swap **a)
+{
+	t_swap *temp;
+
+	temp = (*a)->next;
+	while (*a)
+	{
+
+	}
+
+}
+
 static int ft_init(t_var_s **var)
 {
     t_var_s *temp;
