@@ -13,23 +13,23 @@
 #include "checker.h"
 #include "push_swap.h"
 
-void ft_statistics(t_variables *var)
+void			ft_statistics(t_variables *var)
 {
-    ft_printf("sa: = %-12dpa: = %-12dra: = %-12drra: = %-12d\n"
-            , var->sa, var->pa, var->ra, var->rra);
-    ft_printf("sb: = %-12dpb: = %-12drb: = %-12drrb: = %-12d\n"
-            , var->sb, var->pb, var->rb, var->rrb);
-    ft_printf("ss: = %-30drr: = %-12drrr: = %-12d\n"
+	ft_printf("sa: = %-12dpa: = %-12dra: = %-12drra: = %-12d\n"
+			, var->sa, var->pa, var->ra, var->rra);
+	ft_printf("sb: = %-12dpb: = %-12drb: = %-12drrb: = %-12d\n"
+			, var->sb, var->pb, var->rb, var->rrb);
+	ft_printf("ss: = %-30drr: = %-12drrr: = %-12d\n"
 			, var->ss, var->rr, var->rrr);
-    ft_printf("\nall: %d\n"
+	ft_printf("\nall: %d\n"
 			, (var->sa + var->pa + var->ra + var->rra + var->sb
-			   + var->pb + var->rb + var->rrb + var->ss + var->rr + var->rrr));
+			+ var->pb + var->rb + var->rrb + var->ss + var->rr + var->rrr));
 }
 
-void	ft_stack_print(t_variables *var, char *s, int com)
+void			ft_stack_print(t_variables *var, char *s, int com)
 {
-	t_list_swap *temp_a;
-	t_list_swap *temp_b;
+	t_list_swap	*temp_a;
+	t_list_swap	*temp_b;
 
 	temp_a = var->a;
 	temp_b = var->b;
@@ -43,7 +43,7 @@ void	ft_stack_print(t_variables *var, char *s, int com)
 	ft_printf("\n");
 }
 
-void ft_stack_debug(t_swap *a, t_swap *b)
+void			ft_stack_debug(t_swap *a, t_swap *b)
 {
 	if (a || b)
 		ft_printf("stack_a      stack_b\n");
@@ -51,13 +51,13 @@ void ft_stack_debug(t_swap *a, t_swap *b)
 	{
 		if (a && b)
 		{
-			ft_printf("%d %-12d %d % d", a->grp, a->num,b->grp, b->num);
+			ft_printf("%d %-12d %d % d", a->grp, a->num, b->grp, b->num);
 			a = a->next;
 			b = b->next;
 		}
 		else if (a)
 		{
-			ft_printf("%d %d",a->grp , a->num);
+			ft_printf("%d %d", a->grp, a->num);
 			a = a->next;
 		}
 		else if (b)
@@ -69,4 +69,3 @@ void ft_stack_debug(t_swap *a, t_swap *b)
 	}
 	ft_printf("\n");
 }
-

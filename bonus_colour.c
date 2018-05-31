@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bonus_colour.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpetluk <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/31 09:28:10 by rpetluk           #+#    #+#             */
+/*   Updated: 2018/05/31 09:28:14 by rpetluk          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "checker.h"
 
-void colour_sa(t_list_swap **a, t_list_swap **b)
+void		colour_sa(t_list_swap **a, t_list_swap **b)
 {
 	if (*a && *b)
 	{
@@ -22,7 +34,7 @@ void colour_sa(t_list_swap **a, t_list_swap **b)
 	ft_printf(KNRM"\n");
 }
 
-void colour_sb(t_list_swap **a, t_list_swap **b)
+void		colour_sb(t_list_swap **a, t_list_swap **b)
 {
 	if (*a && *b)
 	{
@@ -44,7 +56,7 @@ void colour_sb(t_list_swap **a, t_list_swap **b)
 	ft_printf(KNRM"\n");
 }
 
-void colour_ss(t_list_swap **a, t_list_swap **b)
+void		colour_ss(t_list_swap **a, t_list_swap **b)
 {
 	if (*a && *b)
 	{
@@ -65,7 +77,7 @@ void colour_ss(t_list_swap **a, t_list_swap **b)
 	ft_printf(KNRM"\n");
 }
 
-void colour_0(t_list_swap **a, t_list_swap **b)
+void		colour_0(t_list_swap **a, t_list_swap **b)
 {
 	while (*a || *b)
 	{
@@ -89,7 +101,7 @@ void colour_0(t_list_swap **a, t_list_swap **b)
 	}
 }
 
-void colour(t_list_swap **a, t_list_swap **b, int com)
+void		colour(t_list_swap **a, t_list_swap **b, int com)
 {
 	int i;
 
@@ -117,20 +129,3 @@ void colour(t_list_swap **a, t_list_swap **b, int com)
 		while (*a || *b)
 			colour_ss(a, b);
 }
-
-//void	ft_stack_print(t_variables *var, char *s, int com)
-//{
-//	t_list_swap *temp_a;
-//	t_list_swap *temp_b;
-//
-//	temp_a = var->a;
-//	temp_b = var->b;
-//	ft_printf("command: %s\n", s);
-//	if (temp_a || temp_b)
-//	{
-//		ft_printf("stack_a      stack_b\n");
-//		colour(&temp_a, &temp_b, com);
-//		colour_0(&temp_a, &temp_b);
-//	}
-//	ft_printf("\n");
-//}

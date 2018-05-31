@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef SUB_LIBFT_H
 # define SUB_LIBFT_H
 # define BUFF_SIZE 1000
@@ -22,14 +21,14 @@
 # include <stdarg.h>
 # include <stdint.h>
 
-#define KNRM  "\x1B[0m"
-#define KRED  "\x1B[31m"
-#define KGRN  "\x1B[32m"
-#define KYEL  "\x1B[33m"
-#define KBLU  "\x1B[34m"
-#define KMAG  "\x1B[35m"
-#define KCYN  "\x1B[36m"
-#define KWHT  "\x1B[37m"
+# define KNRM  "\x1B[0m"
+# define KRED  "\x1B[31m"
+# define KGRN  "\x1B[32m"
+# define KYEL  "\x1B[33m"
+# define KBLU  "\x1B[34m"
+# define KMAG  "\x1B[35m"
+# define KCYN  "\x1B[36m"
+# define KWHT  "\x1B[37m"
 
 typedef struct		s_list
 {
@@ -38,7 +37,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct	s_flag
+typedef struct		s_flag
 {
 	int	i;
 	int	size;
@@ -48,9 +47,9 @@ typedef struct	s_flag
 	int	sign;
 	int	hesh;
 	int	n;
-}				t_flag;
+}					t_flag;
 
-int				g_count;
+int					g_count;
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
@@ -145,10 +144,10 @@ void				ft_printf_unic(unsigned int n, t_flag flags);
 void				ft_putstr_uniswidth(wchar_t *s, t_flag flags);
 void				ft_make_unicode(unsigned int b);
 void				ft_printf_typechars(va_list ap, t_flag flags);
-void				ft_printf_reintwidth
-        (va_list ap, const char *format, t_flag *flags);
-void				ft_printf_reintaccuraty
-        (va_list ap, const char *format, t_flag *flags);
+void				ft_printf_reintwidth \
+					(va_list ap, const char *format, t_flag *flags);
+void				ft_printf_reintaccuraty \
+					(va_list ap, const char *format, t_flag *flags);
 void				ft_printf_typeint(t_flag flags, va_list ap);
 void				ft_printf_typeunint(t_flag flags, va_list ap);
 void				ft_printf_typebase(t_flag flags, va_list ap);

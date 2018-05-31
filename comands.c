@@ -36,7 +36,7 @@ static int	ft_com_cmp4(char *s, t_variables *var)
 	else
 	{
 		write(1, "Error\n", 6);
-		exit (0);
+		exit(0);
 	}
 }
 
@@ -73,39 +73,37 @@ static int	ft_com_cmp2(char *s, t_variables *var)
 		var->pa++;
 		return (4);
 	}
-    else if (ft_strcmp(s, "pb") == 0)
-    {
-        ft_pa(&(var->b), &(var->a));
-        var->pb++;
+	else if (ft_strcmp(s, "pb") == 0)
+	{
+		ft_pa(&(var->b), &(var->a));
+		var->pb++;
 		return (8);
-    }
-    else
-        return (ft_com_cmp3(s, var));
+	}
+	else
+		return (ft_com_cmp3(s, var));
 }
 
-int		ft_com_cmp(char *s, t_variables *var)
+int			ft_com_cmp(char *s, t_variables *var)
 {
 	if (ft_strcmp(s, "sa") == 0)
 	{
 		ft_sa(&(var->a));
-        var->sa++;
+		var->sa++;
 		return (1);
 	}
 	else if (ft_strcmp(s, "sb") == 0)
-    {
-        ft_sa(&(var->b));
-        var->sb++;
+	{
+		ft_sa(&(var->b));
+		var->sb++;
 		return (2);
-    }
+	}
 	else if (ft_strcmp(s, "ss") == 0)
 	{
-        ft_sa(&(var->a));
-        ft_sa(&(var->b));
-        var->ss++;
+		ft_sa(&(var->a));
+		ft_sa(&(var->b));
+		var->ss++;
 		return (3);
 	}
-    else
-        return (ft_com_cmp2(s, var));
+	else
+		return (ft_com_cmp2(s, var));
 }
-
-
