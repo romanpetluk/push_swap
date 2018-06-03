@@ -5,127 +5,136 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetluk <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/17 17:13:17 by rpetluk           #+#    #+#             */
-/*   Updated: 2017/12/17 17:13:20 by rpetluk          ###   ########.fr       */
+/*   Created: 2018/06/02 13:38:36 by rpetluk           #+#    #+#             */
+/*   Updated: 2018/06/02 13:38:39 by rpetluk          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char			*ft_njoin(char *string, char *re)
+char		*read_from_buff(char **buff)
 {
-	int				i;
-	int				l;
-	char			*j;
+	char		*readed;
+	char		*tmp;
+	size_t		buff_len;
+	size_t		rp;
 
-	j = (char *)malloc(sizeof(char) * (ft_strlen(string) + ft_strlen(re) + 1));
-	i = 0;
-	l = 0;
-	while (string && string[i])
+	readed = NULL;
+	rp = 0;
+	buff_len = ft_strlen(*buff);
+	if ((tmp = ft_strchr(*buff, '\n')))
 	{
-		j[i] = string[i];
-		i++;
+		rp = tmp - *buff;
+		readed = ft_strsub(*buff, 0, rp);
+		tmp = *buff;
+		*buff = ft_strsub(*buff, rp + 1, buff_len - rp - 1);
+		ft_strdel(&tmp);
 	}
-	if (string)
-		free(string);
-	while (re[l] && re[l] != '\n')
-		j[i++] = re[l++];
-	j[i] = '\0';
-	if (re[l] == '\0')
-		re[0] = '\0';
-	i = 0;
-	if (re[l++] == '\n')
-		while (re[l])
-			re[i++] = re[l++];
-	re[i] = '\0';
-	return (j);
+	return (readed);
 }
 
-static char			*ft_re(int len, char *re, char **line)
+t_stream	*get_stream(t_list **streams, int fd)
 {
-	char			*string;
-	int				l;
-	int				i;
+	t_list		*runner;
+	t_stream	*stream;
 
-	i = 0;
-	l = 0;
-	string = (char *)malloc(sizeof(char) * (len + 1));
-	while (re[i] && re[i] != '\n')
+	stream = NULL;
+	runner = *streams;
+	while (runner)
 	{
-		string[i] = re[i];
-		i++;
+		if (((t_stream*)(runner->content))->fd == fd)
+		{
+			stream = runner->content;
+			return (stream);
+		}
+		runner = runner->next;
 	}
-	string[i] = '\0';
-	if (re[i++] == '\n')
+	if (!stream)
 	{
-		while (re[i] && re[i] != '\0')
-			re[l++] = re[i++];
-		re[l] = '\0';
-		*line = string;
-		return (NULL);
+		stream = (t_stream*)malloc(sizeof(t_stream));
+		stream->fd = fd;
+		stream->buff = ft_strnew(0);
+		ft_lstadd(streams, ft_lstnew(stream, sizeof(t_stream)));
+		free(stream);
+		stream = (*streams)->content;
 	}
-	re[l] = '\0';
-	return (string);
+	return (stream);
 }
 
-static int			ft_read(const int fd, char **line, char *re)
+int			read_from_file(char **buff, int fd)
 {
-	char			*string;
-	int				i;
-	int				error;
+	int		readed;
+	char	*rd;
+	char	*tmp;
+	int		rt;
 
-	if (!(string = ft_re(ft_strlen(re), re, line)))
-		return (1);
-	while (0 < (error = read(fd, re, BUFF_SIZE)))
+	rd = ft_strnew(BUFF_SIZE);
+	if ((readed = read(fd, rd, BUFF_SIZE)) > 0)
 	{
-		re[error] = '\0';
-		i = 0;
-		while (re[i])
-			if (re[i++] == '\n')
-			{
-				string = ft_njoin(string, re);
-				*line = string;
-				return (1);
-			}
-		string = ft_njoin(string, re);
+		rt = (readed != BUFF_SIZE) ? 0 : 1;
+		if (!rt)
+		{
+			tmp = rd;
+			rd = ft_strsub(rd, 0, readed);
+			ft_strdel(&tmp);
+		}
+		tmp = *buff;
+		*buff = ft_strjoin(*buff, rd);
+		ft_strdel(&tmp);
 	}
-	if (string[0] != '\0')
-	{
-		*line = string;
-		return (1);
-	}
-	return (error);
+	ft_strdel(&rd);
+	return (readed > 0 ? rt : readed);
 }
 
-static t_list		*if_fd(t_list **file_fd, int fd)
+void		lst_del_node(t_list **lst, t_stream *cnt)
 {
-	t_list			*temp;
+	t_list *tmp;
+	t_list *runner;
 
-	temp = *file_fd;
-	while (temp)
+	if (((t_stream*)((*lst)->content)) == cnt)
 	{
-		if ((int)temp->content_size == fd)
-			return (temp);
-		temp = temp->next;
+		tmp = *lst;
+		(*lst) = (*lst)->next;
+		free(cnt->buff);
+		free(cnt);
+		free(tmp);
+		return ;
 	}
-	temp = ft_lstnew("\0", 0);
-	temp->content_size = fd;
-	free(temp->content);
-	temp->content = (t_list*)malloc(sizeof(char) * (BUFF_SIZE + 1));
-	ft_lstadd(file_fd, temp);
-	temp = *file_fd;
-	return (temp);
+	runner = *lst;
+	while ((t_stream*)(runner->next->content) != cnt)
+		runner = runner->next;
+	tmp = runner->next;
+	runner->next = runner->next->next;
+	free(((t_stream*)tmp->content)->buff);
+	free(tmp->content);
+	free(tmp);
 }
 
-int					get_next_line(const int fd, char **line)
+int			get_next_line(const int fd, char **line)
 {
-	int				error;
-	static t_list	*file_fd;
-	t_list			*temp;
+	static t_list	*streams;
+	t_stream		*stream;
+	int				rv;
+	char			*res;
 
-	if (BUFF_SIZE < 1 || read(fd, NULL, 0) || line == NULL)
-		return (-1);
-	temp = if_fd(&file_fd, fd);
-	error = ft_read(temp->content_size, line, temp->content);
-	return (error);
+	rv = 1;
+	stream = get_stream(&streams, fd);
+	while (rv > 0 && !(res = read_from_buff(&(stream->buff))))
+		rv = read_from_file(&(stream->buff), fd);
+	if (rv <= 0)
+	{
+		if ((res = read_from_buff(&(stream->buff))))
+			rv = 1;
+		else if (!ft_strlen(stream->buff) || rv < 0)
+			lst_del_node(&streams, stream);
+		else
+		{
+			rv = 1;
+			res = ft_strdup(stream->buff);
+			lst_del_node(&streams, stream);
+		}
+	}
+	if (rv > 0)
+		*line = res;
+	return (rv);
 }

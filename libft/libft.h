@@ -49,6 +49,12 @@ typedef struct		s_flag
 	int	n;
 }					t_flag;
 
+typedef struct		s_stream
+{
+	int				fd;
+	char			*buff;
+}					t_stream;
+
 int					g_count;
 
 int					ft_atoi(const char *str);

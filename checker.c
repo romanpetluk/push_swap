@@ -102,7 +102,6 @@ static void		checker(t_variables *var)
 			ft_stack_print(var, s, i);
 		free(s);
 	}
-	free(s);
 	if (var->stat == 1)
 		ft_statistics(var);
 }

@@ -88,7 +88,7 @@ int				ft_check_error(char *s, t_list_swap **a)
 	int i;
 
 	i = ft_check_error2(s, a, 0, 1);
-	if (s[i] == '\0')
+	if (s[i] == '\0' && i != -1)
 		return (1);
 	return (-1);
 }
